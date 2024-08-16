@@ -2,3 +2,9 @@ body {
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   padding: 10px;
 }
+ul {
+  list-style-type: none;
+}
+.color-matrix {
+  padding-bottom: 4px;
+}
