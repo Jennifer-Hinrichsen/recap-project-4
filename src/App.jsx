@@ -3,13 +3,14 @@ import { useState } from "react";
 import Color from "./Components/Color/Color";
 import "./App.css";
 import ColorForm from "./Components/Color/Color-form";
+import { nanoid } from "nanoid";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
 
   const addColor = (newColor) => {
     const colorWithId = {
-      id: colors.length + 1,
+      id: nanoid(),
       ...newColor,
     };
     setColors([colorWithId, ...colors]);
