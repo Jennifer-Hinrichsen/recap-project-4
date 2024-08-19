@@ -20,9 +20,13 @@ function App() {
     <>
       <h1>Theme Creator</h1>
       <ColorForm addColor={addColor} />
-      {colors.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}
+      <ul>
+        {colors.map((color) => (
+          <li key={color.id}>
+            <Color color={color} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
