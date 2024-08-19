@@ -1,25 +1,25 @@
 import { useState } from "react";
 import "./Form.css";
 
-const ColorForm = ({ addColor }) => {
+function ColorForm({ addColor }) {
   const [formData, setFormData] = useState({
     role: "Primary",
     hexValue: "#000000",
     contrastText: "#ffffff",
   });
 
-  const handleChange = (event) => {
+  function handleChange(event) {
     const { name, value } = event.target;
     setFormData({
       ...formData,
       [name]: value,
     });
-  };
+  }
 
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
     addColor(formData);
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -73,6 +73,6 @@ const ColorForm = ({ addColor }) => {
       <button type="submit">ADD COLOR</button>
     </form>
   );
-};
+}
 
 export default ColorForm;
