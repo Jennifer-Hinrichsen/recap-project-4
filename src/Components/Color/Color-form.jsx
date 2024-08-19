@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Form.css";
 
 const ColorForm = ({ addColor }) => {
   const [formData, setFormData] = useState({
@@ -22,8 +23,9 @@ const ColorForm = ({ addColor }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <div className="role">
         <label htmlFor="role">Role</label>
+        <br></br>
         <input
           type="text"
           id="role"
@@ -32,15 +34,9 @@ const ColorForm = ({ addColor }) => {
           onChange={handleChange}
         />
       </div>
-      <div>
+      <div className="hex">
         <label htmlFor="hex">Hex</label>
-        <input
-          type="color"
-          id="hex"
-          name="hex"
-          value={formData.hex}
-          onChange={handleChange}
-        />
+        <br></br>
         <input
           type="text"
           id="hexText"
@@ -48,16 +44,17 @@ const ColorForm = ({ addColor }) => {
           value={formData.hex}
           onChange={handleChange}
         />
-      </div>
-      <div>
-        <label htmlFor="contrastText">Contrast Text</label>
         <input
           type="color"
-          id="contrastText"
-          name="contrastText"
-          value={formData.contrastText}
+          id="hex"
+          name="hex"
+          value={formData.hex}
           onChange={handleChange}
         />
+      </div>
+      <div className="contrastText">
+        <label htmlFor="contrastText">Contrast Text</label>
+        <br></br>
         <input
           type="text"
           id="contrastTextInput"
@@ -65,8 +62,15 @@ const ColorForm = ({ addColor }) => {
           value={formData.contrastText}
           onChange={handleChange}
         />
+        <input
+          type="color"
+          id="contrastText"
+          name="contrastText"
+          value={formData.contrastText}
+          onChange={handleChange}
+        />
       </div>
-      <button type="submit">Add Color</button>
+      <button type="submit">ADD COLOR</button>
     </form>
   );
 };
