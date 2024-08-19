@@ -6,10 +6,13 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-
-      {initialColors.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}
+      <ul className="color-list">
+        {initialColors.map((color) => (
+          <li key={color.id} className="color-matrix">
+            <Color color={color} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
