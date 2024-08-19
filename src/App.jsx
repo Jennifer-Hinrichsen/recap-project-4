@@ -2,7 +2,7 @@ import { initialColors } from "./lib/colors";
 import { useState } from "react";
 import Color from "./Components/Color/Color";
 import "./App.css";
-import ColorForm from "./Components/Color/Color-form";
+import ColorForm from "./Components/Color/ColorForm";
 import { nanoid } from "nanoid";
 
 function App() {
