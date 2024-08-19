@@ -3,10 +3,6 @@ import { useState, useEffect } from "react";
 export default function ColorInput({ id, value, onChange }) {
   const [inputValue, setInputValue] = useState(value);
 
-  useEffect(() => {
-    setInputValue(value);
-  }, [value]);
-
   function handleInputChange(event) {
     const newValue = event.target.value;
     setInputValue(newValue);
