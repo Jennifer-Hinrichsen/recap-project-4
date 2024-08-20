@@ -7,6 +7,7 @@ import { nanoid } from "nanoid";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
+  const [confirmDelete, setConfirmDelete] = useState(null);
 
   const addColor = (newColor) => {
     const colorWithId = {
@@ -16,17 +17,38 @@ function App() {
     setColors([colorWithId, ...colors]);
   };
 
+  function handleDelete(id) {
+    setConfirmDelete(id);
+  }
+  function handleDeleteConfirm() {
+    setColors(colors.filter((color) => color.id !== confirmDelete));
+  }
+  function handleDeleteCancel() {
+    setConfirmDelete(null);
+  }
+
   return (
     <>
       <h1>Theme Creator</h1>
       <ColorForm addColor={addColor} />
-      <ul>
-        {colors.map((color) => (
-          <li key={color.id}>
-            <Color color={color} />
-          </li>
-        ))}
-      </ul>
+
+      {colors.length === 0 ? (
+        <p>No colors.. start by adding one!</p>
+      ) : (
+        <ul>
+          {colors.map((color) => (
+            <li key={color.id}>
+              <Color
+                color={color}
+                onDelete={handleDelete}
+                confirmDelete={confirmDelete}
+                onDeleteConfirm={handleDeleteConfirm}
+                onCancel={handleDeleteCancel}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 }
