@@ -26,6 +26,13 @@ function App() {
   function handleDeleteCancel() {
     setConfirmDelete(null);
   }
+  function handleChangeColor(id, updatedColor) {
+    setColors(
+      colors.map(function (color) {
+        return color.id === id ? { ...color, ...updatedColor } : color;
+      })
+    );
+  }
 
   return (
     <>
@@ -44,6 +51,7 @@ function App() {
                 confirmDelete={confirmDelete}
                 onDeleteConfirm={handleDeleteConfirm}
                 onCancel={handleDeleteCancel}
+                onChange={handleChangeColor}
               />
             </li>
           ))}

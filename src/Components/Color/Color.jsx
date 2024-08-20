@@ -1,5 +1,7 @@
 import "./Color.css";
 import "./Buttons.css";
+import { useState } from "react";
+import ColorForm from "./ColorForm";
 
 export default function Color({
   color,
@@ -7,7 +9,19 @@ export default function Color({
   confirmDelete,
   onDeleteConfirm,
   onCancel,
+  onChange,
 }) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEdit = () => {
+    setIsEditing(true); // Bearbeitungsmodus aktivieren
+  };
+
+  const handleChange = (updatedColor) => {
+    onUpdate(color.id, updatedColor); // Farbwerte aktualisieren
+    setIsEditing(false); // Bearbeitungsmodus beenden
+  };
+
   return (
     <div
       className="color-card"
@@ -16,17 +30,23 @@ export default function Color({
         color: color.contrastText,
       }}
     >
-      <h3 className="color-card-headline">{color.hex}</h3>
-      <h4>{color.role}</h4>
-      <p>contrast: {color.contrastText}</p>
-      {confirmDelete === color.id ? (
-        <div className="delete-container">
-          <p className="delete-question-area">Really delete?</p>
-          <button onClick={onCancel}>CANCEL</button>
-          <button onClick={onDeleteConfirm}>DELETE</button>
-        </div>
+      {isEditing ? (
+        <ColorForm addColor={handleChange} defaultValues={color} />
       ) : (
-        <button onClick={() => onDelete(color.id)}>Delete</button>
+        <>
+          <h3 className="color-card-highlight">{color.hex}</h3>
+          <h4>{color.role}</h4>
+          <p>contrast: {color.contrastText}</p>
+          <button onClick={handleEdit}>Edit</button>
+          {confirmDelete === color.id ? (
+            <>
+              <button onClick={onDeleteConfirm}>DELETE</button>
+              <button onClick={onCancel}>CANCEL</button>
+            </>
+          ) : (
+            <button onClick={() => onDelete(color.id)}>Delete</button>
+          )}
+        </>
       )}
     </div>
   );
