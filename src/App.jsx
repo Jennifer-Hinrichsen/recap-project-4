@@ -7,7 +7,6 @@ import { nanoid } from "nanoid";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
-  const [confirmDelete, setConfirmDelete] = useState(null);
 
   const addColor = (newColor) => {
     const colorWithId = {
@@ -17,21 +16,15 @@ function App() {
     setColors([colorWithId, ...colors]);
   };
 
-  function handleDelete(id) {
-    setConfirmDelete(id);
-  }
-  function handleDeleteConfirm() {
-    setColors(colors.filter((color) => color.id !== confirmDelete));
-  }
-  function handleDeleteCancel() {
-    setConfirmDelete(null);
-  }
   function handleChangeColor(id, updatedColor) {
     setColors(
       colors.map((color) =>
         color.id === id ? { ...color, ...updatedColor } : color
       )
     );
+  }
+  function handleDelete(id) {
+    setColors(colors.filter((color) => color.id !== id));
   }
 
   return (
@@ -46,11 +39,8 @@ function App() {
             <li key={color.id}>
               <Color
                 color={color}
-                onDelete={handleDelete}
-                confirmDelete={confirmDelete}
-                onDeleteConfirm={handleDeleteConfirm}
-                onCancel={handleDeleteCancel}
                 onChange={handleChangeColor}
+                onDelete={handleDelete}
               />
             </li>
           ))}
