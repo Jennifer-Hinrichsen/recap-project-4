@@ -14,13 +14,16 @@ export default function Color({
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
-    setIsEditing(true); // Bearbeitungsmodus aktivieren
+    setIsEditing(true);
   };
 
   const handleChange = (updatedColor) => {
-    onUpdate(color.id, updatedColor); // Farbwerte aktualisieren
-    setIsEditing(false); // Bearbeitungsmodus beenden
+    onChange(color.id, updatedColor);
+    setIsEditing(false);
   };
+  function handleCancelEdit() {
+    setIsEditing(false);
+  }
 
   return (
     <div
@@ -31,7 +34,10 @@ export default function Color({
       }}
     >
       {isEditing ? (
-        <ColorForm addColor={handleChange} defaultValues={color} />
+        <>
+          <ColorForm addColor={handleChange} defaultValues={color} />
+          <button onClick={handleCancelEdit}>CANCEL</button>
+        </>
       ) : (
         <>
           <h3 className="color-card-highlight">{color.hex}</h3>
