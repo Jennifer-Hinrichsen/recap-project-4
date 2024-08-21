@@ -28,9 +28,9 @@ function App() {
   }
   function handleChangeColor(id, updatedColor) {
     setColors(
-      colors.map(function (color) {
-        return color.id === id ? { ...color, ...updatedColor } : color;
-      })
+      colors.map((color) =>
+        color.id === id ? { ...color, ...updatedColor } : color
+      )
     );
   }
 
