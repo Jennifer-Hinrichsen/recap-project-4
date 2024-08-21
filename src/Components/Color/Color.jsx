@@ -13,14 +13,15 @@ export default function Color({
 }) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleEdit = () => {
+  function handleEdit() {
     setIsEditing(true);
-  };
+  }
 
-  const handleChange = (updatedColor) => {
+  function handleChange(updatedColor) {
     onChange(color.id, updatedColor);
     setIsEditing(false);
-  };
+  }
+
   function handleCancelEdit() {
     setIsEditing(false);
   }
