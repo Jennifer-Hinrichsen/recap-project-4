@@ -3,15 +3,9 @@ import "./Buttons.css";
 import { useState } from "react";
 import ColorForm from "./ColorForm";
 
-export default function Color({
-  color,
-  onDelete,
-  confirmDelete,
-  onDeleteConfirm,
-  onCancel,
-  onChange,
-}) {
+export default function Color({ color, onDelete, onChange }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(null);
 
   function handleEdit() {
     setIsEditing(true);
@@ -25,6 +19,16 @@ export default function Color({
   function handleCancelEdit() {
     setIsEditing(false);
   }
+  function handleDelete() {
+    setConfirmDelete(true);
+  }
+  function handleDeleteCancel() {
+    setConfirmDelete(null);
+  }
+  function handleDeleteConfirm() {
+    onDelete(color.id);
+    setConfirmDelete(false);
+  }
 
   return (
     <div
@@ -36,7 +40,14 @@ export default function Color({
     >
       {isEditing ? (
         <>
-          <ColorForm addColor={handleChange} defaultValues={color} />
+          <h3 className="color-card-headline">{color.hex}</h3>
+          <h4>{color.role}</h4>
+          <p>contrast: {color.contrastText}</p>
+          <ColorForm
+            addColor={handleChange}
+            defaultValues={color}
+            isEditing={true}
+          />
           <button onClick={handleCancelEdit}>CANCEL</button>
         </>
       ) : (
@@ -45,13 +56,14 @@ export default function Color({
           <h4>{color.role}</h4>
           <p>contrast: {color.contrastText}</p>
           <button onClick={handleEdit}>Edit</button>
-          {confirmDelete === color.id ? (
-            <>
-              <button onClick={onDeleteConfirm}>DELETE</button>
-              <button onClick={onCancel}>CANCEL</button>
-            </>
+          {confirmDelete ? (
+            <div className="delete-confirmation">
+              <p className="color-card-headline">Really delete?</p>
+              <button onClick={handleDeleteConfirm}>DELETE</button>
+              <button onClick={handleDeleteCancel}>CANCEL</button>
+            </div>
           ) : (
-            <button onClick={() => onDelete(color.id)}>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
           )}
         </>
       )}
