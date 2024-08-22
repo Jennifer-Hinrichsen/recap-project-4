@@ -4,7 +4,7 @@ import "./Form.css";
 function ColorForm({ onSubmit, isEditing = false }) {
   const [formData, setFormData] = useState({
     role: "Primary",
-    hexValue: "#000000",
+    hex: "#000000",
     contrastText: "#ffffff",
   });
 
@@ -18,6 +18,7 @@ function ColorForm({ onSubmit, isEditing = false }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log("Form data:", formData);
     onSubmit(formData);
   }
 
@@ -40,15 +41,15 @@ function ColorForm({ onSubmit, isEditing = false }) {
         <input
           type="text"
           id="hexText"
-          name="hexValue"
-          value={formData.hexValue}
+          name="hex"
+          value={formData.hex}
           onChange={handleChange}
         />
         <input
           type="color"
           id="hex"
-          name="hexValue"
-          value={formData.hexValue}
+          name="hex"
+          value={formData.hex}
           onChange={handleChange}
         />
       </div>
