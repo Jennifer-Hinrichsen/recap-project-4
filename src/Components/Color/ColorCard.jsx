@@ -5,7 +5,7 @@ import ColorForm from "./ColorForm";
 
 export default function Color({ color, onDelete, onChange }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(null);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   function handleEdit() {
     setIsEditing(true);
@@ -23,7 +23,7 @@ export default function Color({ color, onDelete, onChange }) {
     setConfirmDelete(true);
   }
   function handleDeleteCancel() {
-    setConfirmDelete(null);
+    setConfirmDelete(false);
   }
   function handleDeleteConfirm() {
     onDelete(color.id);
