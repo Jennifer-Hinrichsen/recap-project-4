@@ -44,7 +44,7 @@ export default function Color({ color, onDelete, onChange }) {
       {isEditing ? (
         <>
           <ColorForm
-            addColor={handleChange}
+            onSubmit={handleChange}
             defaultValues={color}
             isEditing={true}
           />
