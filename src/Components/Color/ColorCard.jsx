@@ -38,11 +38,11 @@ export default function Color({ color, onDelete, onChange }) {
         color: color.contrastText,
       }}
     >
+      <h3 className="color-card-highlight">{color.hex}</h3>
+      <h4>{color.role}</h4>
+      <p>contrast: {color.contrastText}</p>
       {isEditing ? (
         <>
-          <h3 className="color-card-headline">{color.hex}</h3>
-          <h4>{color.role}</h4>
-          <p>contrast: {color.contrastText}</p>
           <ColorForm
             addColor={handleChange}
             defaultValues={color}
@@ -52,9 +52,6 @@ export default function Color({ color, onDelete, onChange }) {
         </>
       ) : (
         <>
-          <h3 className="color-card-highlight">{color.hex}</h3>
-          <h4>{color.role}</h4>
-          <p>contrast: {color.contrastText}</p>
           <button onClick={handleEdit}>Edit</button>
           {confirmDelete ? (
             <div className="delete-confirmation">
