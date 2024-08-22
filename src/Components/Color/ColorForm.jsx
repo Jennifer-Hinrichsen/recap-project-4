@@ -40,15 +40,15 @@ function ColorForm({ onSubmit, isEditing = false }) {
         <input
           type="text"
           id="hexText"
-          name="hex"
-          value={formData.hex}
+          name="hexValue"
+          value={formData.hexValue}
           onChange={handleChange}
         />
         <input
           type="color"
           id="hex"
-          name="hex"
-          value={formData.hex}
+          name="hexValue"
+          value={formData.hexValue}
           onChange={handleChange}
         />
       </div>
