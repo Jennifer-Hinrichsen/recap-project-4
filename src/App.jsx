@@ -8,7 +8,7 @@ import { nanoid } from "nanoid";
 function App() {
   const [colors, setColors] = useState(initialColors);
 
-  const addColor = (newColor) => {
+  const onSubmit = (newColor) => {
     const colorWithId = {
       id: nanoid(),
       ...newColor,
@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm addColor={addColor} />
+      <ColorForm onSubmit={onSubmit} />
       {colors.length === 0 ? (
         <p>No colors.. start by adding one!</p>
       ) : (

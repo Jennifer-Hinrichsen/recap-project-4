@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Form.css";
 
-function ColorForm({ addColor, isEditing = false }) {
+function ColorForm({ onSubmit, isEditing = false }) {
   const [formData, setFormData] = useState({
     role: "Primary",
     hexValue: "#000000",
@@ -18,7 +18,7 @@ function ColorForm({ addColor, isEditing = false }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    addColor(formData);
+    onSubmit(formData);
   }
 
   return (
