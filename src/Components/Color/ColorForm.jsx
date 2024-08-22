@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Form.css";
 
-function ColorForm({ addColor }) {
+function ColorForm({ onSubmit, isEditing = false }) {
   const [formData, setFormData] = useState({
     role: "Primary",
     hexValue: "#000000",
@@ -18,7 +18,7 @@ function ColorForm({ addColor }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    addColor(formData);
+    onSubmit(formData);
   }
 
   return (
@@ -40,15 +40,15 @@ function ColorForm({ addColor }) {
         <input
           type="text"
           id="hexText"
-          name="hex"
-          value={formData.hex}
+          name="hexValue"
+          value={formData.hexValue}
           onChange={handleChange}
         />
         <input
           type="color"
           id="hex"
-          name="hex"
-          value={formData.hex}
+          name="hexValue"
+          value={formData.hexValue}
           onChange={handleChange}
         />
       </div>
@@ -70,7 +70,7 @@ function ColorForm({ addColor }) {
           onChange={handleChange}
         />
       </div>
-      <button type="submit">ADD COLOR</button>
+      <button type="submit">{isEditing ? "Update Color" : "Add Color"}</button>
     </form>
   );
 }
