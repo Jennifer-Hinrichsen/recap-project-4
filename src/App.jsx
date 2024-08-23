@@ -4,9 +4,12 @@ import Color from "./Components/Color/ColorCard";
 import "./App.css";
 import ColorForm from "./Components/Color/ColorForm";
 import { nanoid } from "nanoid";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useLocalStorageState("colors", {
+    defaultValue: initialColors,
+  });
 
   const addColor = (newColor) => {
     const colorWithId = {
