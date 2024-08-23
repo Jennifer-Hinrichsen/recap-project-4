@@ -2,6 +2,7 @@ import "./Color.css";
 import "./Buttons.css";
 import { useState } from "react";
 import ColorForm from "./ColorForm";
+import ContrastDisplay from "./ContrastScore";
 
 export default function Color({ color, onDelete, onChange }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -41,6 +42,7 @@ export default function Color({ color, onDelete, onChange }) {
       <h3 className="color-card-highlight">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
+      <ContrastDisplay hex={color.hex} contrastText={color.contrasText} />
       {isEditing ? (
         <>
           <ColorForm
