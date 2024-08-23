@@ -39,8 +39,15 @@ export default function Color({ color, onDelete, onChange }) {
         color: color.contrastText,
       }}
     >
-      <h3 className="color-card-highlight">{color.hex}</h3>
-      <CopyToClipboard hexCode={color.hexCode} />
+      <section
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <h3 className="color-card-highlight">{color.hex}</h3>
+        <CopyToClipboard hexCode={color.hex} />
+      </section>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {isEditing ? (
