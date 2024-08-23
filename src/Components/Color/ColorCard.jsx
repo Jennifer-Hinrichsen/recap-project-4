@@ -39,6 +39,7 @@ export default function Color({ color, onDelete, onChange }) {
       }}
     >
       <h3 className="color-card-highlight">{color.hex}</h3>
+      <button>Copy</button>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {isEditing ? (
